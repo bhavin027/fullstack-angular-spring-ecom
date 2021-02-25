@@ -40,6 +40,9 @@ public class Products {
 	@Column(name="category_id")
 	private int categoryId;
 	
+	@Column(name="size")
+	private String size;
+	
 	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name="product_id")
 	private List<ProductReviews> reviews;
@@ -47,7 +50,7 @@ public class Products {
 	public Products() {}
 
 	public Products(int id, String name, String featureImage, String galleryImages, String shortDesc, String longDesc,
-			int categoryId) {
+			int categoryId, String size) {
 		this.id = id;
 		this.name = name;
 		this.featureImage = featureImage;
@@ -55,6 +58,7 @@ public class Products {
 		this.shortDesc = shortDesc;
 		this.longDesc = longDesc;
 		this.categoryId = categoryId;
+		this.size = size;
 	}
 
 	public int getId() {
@@ -121,13 +125,20 @@ public class Products {
 		this.reviews = reviews;
 	}
 
+	public String getSize() {
+		return size;
+	}
+
+	public void setSize(String size) {
+		this.size = size;
+	}
+
 	@Override
 	public String toString() {
 		return "Products [id=" + id + ", name=" + name + ", featureImage=" + featureImage + ", galleryImages="
 				+ galleryImages + ", shortDesc=" + shortDesc + ", longDesc=" + longDesc + ", categoryId=" + categoryId
-				+ "]";
+				+ ", size=" + size + "]";
 	}
-	
 	
 
 }
