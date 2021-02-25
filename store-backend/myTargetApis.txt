@@ -1,0 +1,20 @@
+1. Products Categories
+	->Category Id
+	->Name
+	->Preview Image
+
+2. Products
+	->Id
+	->Category Id
+	->Name
+	->Feature Image
+	->Gallery Images
+	->Short Desc
+	->Long Desc
+	
+3. Product Reviews
+	->Product Id
+	->Rating
+	->User Name
+	->Comment
+	->Approval
