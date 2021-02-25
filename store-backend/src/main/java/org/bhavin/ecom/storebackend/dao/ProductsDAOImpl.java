@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import org.bhavin.ecom.storebackend.entity.ProductCategories;
+import org.bhavin.ecom.storebackend.entity.ProductReviews;
 import org.bhavin.ecom.storebackend.entity.Products;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -94,6 +95,45 @@ public class ProductsDAOImpl implements ProductsDAO {
 		Query theQuery = entityManager.createQuery("delete from Products where id=:prdtId");
 		
 		theQuery.setParameter("prdtId", theId);
+		
+		theQuery.executeUpdate();
+		
+	}
+
+	@Override
+	public List<ProductReviews> findAllReviews() {
+
+		Query theQuery = entityManager.createQuery("from ProductReviews", ProductReviews.class);
+		
+		List<ProductReviews> theReviews = theQuery.getResultList();
+		
+		return theReviews;
+	}
+
+	@Override
+	public ProductReviews findReviewById(int theId) {
+		
+		ProductReviews theReview = entityManager.find(ProductReviews.class, theId); 
+		
+		return theReview;
+	}
+
+	@Override
+	public ProductReviews saveReview(ProductReviews theReview) {
+
+		ProductReviews temp = entityManager.merge(theReview);
+		
+		theReview.setId(temp.getId());
+		
+		return theReview;
+	}
+
+	@Override
+	public void deleteReviews(int theId) {
+		
+		Query theQuery = entityManager.createQuery("delete from ProductReviews where id=:reviewId");
+		
+		theQuery.setParameter("reviewId", theId);
 		
 		theQuery.executeUpdate();
 		

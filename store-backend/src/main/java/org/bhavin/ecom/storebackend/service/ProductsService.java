@@ -3,6 +3,7 @@ package org.bhavin.ecom.storebackend.service;
 import java.util.List;
 
 import org.bhavin.ecom.storebackend.entity.ProductCategories;
+import org.bhavin.ecom.storebackend.entity.ProductReviews;
 import org.bhavin.ecom.storebackend.entity.Products;
 
 public interface ProductsService {
@@ -22,5 +23,13 @@ public interface ProductsService {
 	public void deleteCategory(int theId);
 	
 	public void deleteProduct(int theId);
+	
+	public List<ProductReviews> findAllReviews();
+	
+	public ProductReviews findReviewById(int theId);
+	
+	public ProductReviews saveReview(ProductReviews theReview);
+	
+	public void deleteReviews(int theId);
 	
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.bhavin.ecom.storebackend.dao.ProductsDAO;
 import org.bhavin.ecom.storebackend.entity.ProductCategories;
+import org.bhavin.ecom.storebackend.entity.ProductReviews;
 import org.bhavin.ecom.storebackend.entity.Products;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -75,6 +76,34 @@ public class ProductsServiceImpl implements ProductsService {
 		
 		productsDAO.deleteProduct(theId);
 		
+	}
+
+	@Override
+	@Transactional
+	public List<ProductReviews> findAllReviews() {
+
+		return productsDAO.findAllReviews();
+	}
+
+	@Override
+	@Transactional
+	public ProductReviews findReviewById(int theId) {
+
+		return productsDAO.findReviewById(theId);
+	}
+
+	@Override
+	@Transactional
+	public ProductReviews saveReview(ProductReviews theReview) {
+
+		return productsDAO.saveReview(theReview);
+	}
+
+	@Override
+	@Transactional
+	public void deleteReviews(int theId) {
+
+		productsDAO.deleteReviews(theId);
 	}
 
 }

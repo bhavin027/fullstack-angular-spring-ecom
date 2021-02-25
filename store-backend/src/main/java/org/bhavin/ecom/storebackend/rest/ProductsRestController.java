@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.bhavin.ecom.storebackend.entity.DeleteMessage;
 import org.bhavin.ecom.storebackend.entity.ProductCategories;
+import org.bhavin.ecom.storebackend.entity.ProductReviews;
 import org.bhavin.ecom.storebackend.entity.Products;
 import org.bhavin.ecom.storebackend.service.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -136,6 +137,54 @@ public class ProductsRestController {
 		return new DeleteMessage("Product ID: "+prdtId+" Deleted Successfully!");
 	}
 	
+	@GetMapping(path="/reviews")
+	public List<ProductReviews> getAllReviews() {
+		
+		List<ProductReviews> theReviews = productsService.findAllReviews();
+		return theReviews;
+	}
+	
+	@GetMapping(path="/reviews/{reviewId}")
+	public ProductReviews getReviewById(@PathVariable int reviewId) {
+		ProductReviews theReview = productsService.findReviewById(reviewId);
+		
+		if(theReview == null) {
+			throw new RuntimeException("Product Review Not Found, ID: "+reviewId);
+		}
+		
+		return theReview;
+	}
+	
+	@PostMapping(path="/reviews")
+	public ProductReviews saveProductReview(@RequestBody ProductReviews theReview) {
+		
+		theReview.setId(0);
+		
+		ProductReviews temp = productsService.saveReview(theReview);
+		
+		return temp;
+	}
+	
+	@PutMapping(path="/reviews")
+	public ProductReviews updateProductReview(@RequestBody ProductReviews theReview) {
+		
+		ProductReviews temp = productsService.saveReview(theReview);
+		return temp;
+		
+	}
+	
+	@DeleteMapping(path="/reviews/{reviewId}")
+	public DeleteMessage deleteProductReview(@PathVariable int reviewId) {
+		
+		ProductReviews tempReview = productsService.findReviewById(reviewId);
+		
+		if(tempReview == null) {
+			throw new RuntimeException("Review ID: "+ reviewId +" Does Not Exists!");
+		}
+		
+		productsService.deleteReviews(reviewId);
+		
+		return new DeleteMessage("Product review deleted successfully! Id: "+reviewId);
+	}
+	
 }
-
-

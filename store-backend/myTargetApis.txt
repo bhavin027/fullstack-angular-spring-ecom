@@ -13,6 +13,7 @@
 	->Long Desc
 	
 3. Product Reviews
+	->Id
 	->Product Id
 	->Rating
 	->User Name

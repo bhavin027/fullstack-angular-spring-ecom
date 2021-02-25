@@ -1,10 +1,16 @@
 package org.bhavin.ecom.storebackend.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -34,6 +40,10 @@ public class Products {
 	@Column(name="category_id")
 	private int categoryId;
 	
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@JoinColumn(name="product_id")
+	private List<ProductReviews> reviews;
+
 	public Products() {}
 
 	public Products(int id, String name, String featureImage, String galleryImages, String shortDesc, String longDesc,
@@ -101,6 +111,14 @@ public class Products {
 
 	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
+	}
+	
+	public List<ProductReviews> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<ProductReviews> reviews) {
+		this.reviews = reviews;
 	}
 
 	@Override
