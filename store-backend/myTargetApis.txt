@@ -19,3 +19,12 @@
 	->User Name
 	->Comment
 	->Approval
+	
+3. Cart
+	->Id
+	->Image
+	->Product Id
+	->Product Name
+	->Size
+	->Quantity
+	->Price
