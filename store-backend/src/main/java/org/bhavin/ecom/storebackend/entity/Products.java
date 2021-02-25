@@ -43,6 +43,9 @@ public class Products {
 	@Column(name="size")
 	private String size;
 	
+	@Column(name="price")
+	private String price;
+	
 	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name="product_id")
 	private List<ProductReviews> reviews;
@@ -50,7 +53,7 @@ public class Products {
 	public Products() {}
 
 	public Products(int id, String name, String featureImage, String galleryImages, String shortDesc, String longDesc,
-			int categoryId, String size) {
+			int categoryId, String size, String price) {
 		this.id = id;
 		this.name = name;
 		this.featureImage = featureImage;
@@ -59,6 +62,7 @@ public class Products {
 		this.longDesc = longDesc;
 		this.categoryId = categoryId;
 		this.size = size;
+		this.price = price;
 	}
 
 	public int getId() {
@@ -133,12 +137,19 @@ public class Products {
 		this.size = size;
 	}
 
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
 	@Override
 	public String toString() {
 		return "Products [id=" + id + ", name=" + name + ", featureImage=" + featureImage + ", galleryImages="
 				+ galleryImages + ", shortDesc=" + shortDesc + ", longDesc=" + longDesc + ", categoryId=" + categoryId
-				+ ", size=" + size + "]";
+				+ ", size=" + size + ", price=" + price + "]";
 	}
-	
 
 }
